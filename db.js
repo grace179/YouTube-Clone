@@ -1,38 +1,25 @@
-export const videos = [
+import mongoose from 'mongoose';
+import dotenv from "dotenv";
+dotenv.config();
+
+mongoose.connect(
+    process.env.MONGO_URL,
     {
-        id:32392,
-        title: 'Video awesome',
-        description: 'this is something I love',
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creator: {
-            id: 121212,
-            username: 'Carrie',
-            email: 'carrie@ha.com',
-        }
-    },
-    {
-        id:32390,
-        title: 'Video Good',
-        description: 'this is something I good',
-        views: 20,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creator: {
-            id: 121212,
-            username: 'Carrie',
-            email: 'carrie@ha.com',
-        }
-    },
-    {
-        id:32399,
-        title: 'Video wow',
-        description: 'this is something cool',
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creator: {
-            id: 121212,
-            username: 'Carrie',
-            email: 'carrie@ha.com',
-        }
+        useNewUrlParser: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true 
     }
-];
+);
+
+//MongoDB와의 연결을 'db'로 저장
+const db = mongoose.connection;
+
+const handleOpen = () => console.log("👍 Connected to DB");
+const handleError = error => console.log(`❌ Error on DB Connection: ${error}`);
+
+//once : 한번 실행 되는 것
+//connection을 열고, handleOpen함수 실행
+db.once("open", handleOpen);
+
+// Error
+db.on("error", handleError);
