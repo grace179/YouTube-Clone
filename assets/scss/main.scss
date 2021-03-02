@@ -13,7 +13,38 @@ body {
 
 main {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   min-height: 70vh;
+}
+
+button,
+input:not([type="file"]),
+textarea,
+.fileUpload {
+  padding: 7px 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  color: black;
+  font-weight: 600;
+  background-color: #fff;
+  max-width: 320px;
+  resize: none;
+
+  &::placeholder {
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+button {
+  background-color: $dark-red;
+  color: #fff;
+  cursor: pointer;
+}
+
+.fileUpload {
+  margin-bottom: 25px;
 }
