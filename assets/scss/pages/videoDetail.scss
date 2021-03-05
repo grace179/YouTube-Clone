@@ -22,15 +22,21 @@
 
     .video__title {
       font-size: 22px;
-      font-weight: 300;
+      font-weight: 500;
     }
 
     .video__views {
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .video__description {
       font-size: 16px;
+    }
+
+    .video__author {
+      a {
+        font-weight: 600;
+      }
     }
   }
 
