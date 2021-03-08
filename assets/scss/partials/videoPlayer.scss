@@ -49,9 +49,9 @@
       input[type=range] {
         -webkit-appearance: none;
         background-color: rgba(0, 0, 0, 0.7);
+        cursor: pointer;
 
         &::-webkit-slider-runnable-track {
-          -webkit-appearance: none;
           background-color: $grey;
           height: 5px;
         }
