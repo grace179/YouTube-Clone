@@ -130,7 +130,12 @@ export const userDetail = async (req, res) => {
     params: { id },
   } = req;
   try {
-    const user = await User.findById(id).populate("videos");
+    const user = await User.findById(id).populate({
+      path: "videos",
+      populate: {
+        path: "creator",
+      },
+    });
     console.log(user);
     res.render("userDetail", { pageTitle: "User Detail", user });
   } catch (error) {

@@ -7,7 +7,7 @@ header.header
             form(action=routes.search, method="get")
                 input(type="text", placeholder="Search by term...", name='term')
         .header__column
-            ul
+            ul#menu
                 if !loggedUser
                     li
                         a(href=routes.join) Join
@@ -20,3 +20,5 @@ header.header
                         a(href=routes.me) Profile
                     li
                         a(href=routes.logout) Log Out
+            i.fas.fa-bars#toggle
+            

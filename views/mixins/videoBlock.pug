@@ -2,9 +2,14 @@ mixin videoBlock(video = {})
     .videoBlock
         a(href=routes.videoDetail(video.id))
             video.videoBlock__thumnail(src=video.videoFile, controls=false)
-            h4.videoBlock__title=video.title
-            if video.views === 1
-                h6.videoBlock__views 1 view
-            else
-                h6.videoBlock__views #{video.views} views
-        
+            .videoBlock__info
+                .videoBlock__avatar
+                    img(src=`/${video.creator.avatarUrl}`)
+                .videoBlock__description
+                    h4.videoBlock__title=video.title
+                    span.videoBlock__creator=video.creator.name
+                    if video.views === 1
+                        span.videoBlock__views 1 view
+                    else
+                        span.videoBlock__views #{video.views} views
+                    span.video__createdAt=`${video.createdAt.getFullYear()}.${video.createdAt.getMonth()+1 < 10 ? "0"+(video.createdAt.getMonth()+1):video.createdAt.getMonth()+1}.${video.createdAt.getDate() < 10 ? "0"+video.createdAt.getDate():video.createdAt.getDate()} ${video.createdAt.getHours() < 10 ? "0"+video.createdAt.getHours():video.createdAt.getHours()}:${video.createdAt.getMinutes() < 10 ? "0"+video.createdAt.getMinutes():video.createdAt.getMinutes()}`

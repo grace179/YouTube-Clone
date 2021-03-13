@@ -1,6 +1,6 @@
 .header {
   background-color: $red;
-  margin-bottom: 50px;
+  margin-bottom: 2em;
 
   .header__wrapper {
     padding: 5px 0px;
@@ -37,6 +37,12 @@
         }
       }
 
+      #toggle {
+        display: none;
+        font-size: 2em;
+        cursor: pointer;
+      }
+
       form {
         width: 100%;
 
@@ -52,6 +58,44 @@
             font-weight: 300;
             color: rgba(0, 0, 0, 0.7);
           }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 48rem) {
+  .header {
+    .header__wrapper {
+      .header__column {
+        transition: all 300 ease;
+        position: relative;
+
+        ul {
+          flex-direction: column;
+          position: absolute;
+          top: 2.5em;
+          right: 0;
+          padding: 1em;
+          background-color: $red;
+          z-index: 1;
+
+          li:not(:last-child) {
+            margin-bottom: 0.5em;
+          }
+        }
+
+        #menu {
+          display: none;
+        }
+
+        #menu.visible {
+          display: block;
+        }
+
+        #toggle {
+          display: block;
+          margin-right: 0.2em;
         }
       }
     }

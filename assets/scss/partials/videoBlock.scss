@@ -6,9 +6,42 @@
     margin-bottom: 10px;
   }
 
-  .videoBlock__title {
-    font-size: 18px;
-    font-weight: 300;
-    margin-bottom: 10px;
+  .videoBlock__info {
+    display: flex;
+    align-items: center;
+
+    .videoBlock__avatar {
+      margin-right: 0.5em;
+
+      img {
+        width: 4em;
+        height: 4em;
+        border-radius: 50%;
+      }
+
+    }
+
+    .videoBlock__description {
+
+      .videoBlock__title {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+
+      .videoBlock__creator {
+        font-weight: 400;
+      }
+
+      span::after {
+        content: ' | ';
+        color: #878787;
+      }
+
+      span:last-child::after {
+        content: '';
+      }
+    }
   }
+
 }

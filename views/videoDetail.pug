@@ -3,23 +3,25 @@ include mixins/videoPlayer
 
 block content
     .video-detail__container
-        +videoPlayer({
-            src:video.fileUrl
-        })
-        .video__info
-            if loggedUser
-                if video.creator.id === loggedUser.id
-                    a(href=routes.editVideo(video.id)) 
-                        button Edit Video
-            h5.video__title=video.title
-            p.video__description=video.description
-            if video.views === 1
-                span.video__views 1 view
-            else
-                span.video__views #{video.views} views
-            .video__author
-                |Uploaded by 
-                a(href=routes.userDetail(video.creator.id))=video.creator.name
+        .video__container
+            +videoPlayer({
+                src:video.fileUrl
+            })
+            .video__info
+                if loggedUser
+                    if video.creator.id === loggedUser.id
+                        a(href=routes.editVideo(video.id)) 
+                            button Edit Video
+                h5.video__title=video.title
+                p.video__description=video.description
+                if video.views === 1
+                    span.video__views 1 view
+                else
+                    span.video__views #{video.views} views
+                span.video__createdAt=`${video.createdAt.getFullYear()}.${video.createdAt.getMonth()+1 < 10 ? "0"+(video.createdAt.getMonth()+1):video.createdAt.getMonth()+1}.${video.createdAt.getDate() < 10 ? "0"+video.createdAt.getDate():video.createdAt.getDate()} ${video.createdAt.getHours() < 10 ? "0"+video.createdAt.getHours():video.createdAt.getHours()}:${video.createdAt.getMinutes() < 10 ? "0"+video.createdAt.getMinutes():video.createdAt.getMinutes()}`
+                .video__author
+                    |Uploaded by 
+                    a(href=routes.userDetail(video.creator.id))=video.creator.name
         .video__comments
             if video.comments.length === 1
                 span.video__comment-number
@@ -30,11 +32,14 @@ block content
                     span#jsCommentNumber=video.comments.length
                     |  comments
             form.add__comment#jsAddComment
-                input(type="text", placeholder="Add a comment")
-                input(type="submit" value="Add")
+                input(type="text", placeholder="Add a comment", required=true)
+                button(type="submit" value="Add") Add
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
-                        span.video__comments-creator#commentCreator=comment.creator.name
-                        span.video__comments-text=comment.text
-                        span.video__comments-createdAt=String(comment.createdAt).split("GMT")[0]
+                        .comment-profile
+                            img.video__comments-avatar(src=`/${comment.creator.avatarUrl}`)
+                        .comment-info
+                            span.video__comments-creator#commentCreator=comment.creator.name
+                            span.video__comments-text=comment.text
+                            span.video__comments-createdAt#commentCreatedAt=`${comment.createdAt.getFullYear()}.${comment.createdAt.getMonth()+1 < 10 ? "0"+(comment.createdAt.getMonth()+1):comment.createdAt.getMonth()+1}.${comment.createdAt.getDate() < 10 ? "0"+comment.createdAt.getDate():comment.createdAt.getDate()} ${comment.createdAt.getHours() < 10 ? "0"+comment.createdAt.getHours():comment.createdAt.getHours()}:${comment.createdAt.getMinutes() < 10 ? "0"+comment.createdAt.getMinutes():comment.createdAt.getMinutes()}`

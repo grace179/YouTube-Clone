@@ -7,11 +7,37 @@ const commentNumber = document.getElementById("jsCommentNumber");
 const increaseNumber = () => {
   commentNumber.innerHTML = parseInt(commentNumber.innerHTML, 10) + 1;
 };
+
 const addComment = (comment) => {
   const li = document.createElement("li");
   const span = document.createElement("span");
+  const div = document.createElement("div");
+
+  div.style.width = "3em";
+  div.style.height = "3em";
+  div.style.backgroundColor = "red";
+  div.style.borderRadius = "50%";
+  div.style.lineHeight = "3em";
+  div.style.textAlign = "center";
+  div.style.color = "#fff";
+  div.innerHTML = "Me";
+
+  li.appendChild(div);
+
   span.innerHTML = comment;
+  span.backgroundColor = "#ddd";
+  span.classList.add("video__comments-text");
   li.appendChild(span);
+
+  const newComment = `<div class="comment-profile">
+      <img class="video__comments-avatar" src="">
+    </div>
+    <div class="comment-info">
+      <span class="video__comments-creator" >Me</span>
+      <span class="video__comments-text">${comment}</span>
+      <span class="video__comments-createdAt">now</span>
+    </div>`;
+  // li.appendChild(newComment);
   commentList.prepend(li);
   increaseNumber();
 };
