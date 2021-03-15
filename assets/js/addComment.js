@@ -3,6 +3,7 @@ import axios from "axios";
 const addCommentForm = document.getElementById("jsAddComment");
 const commentList = document.getElementById("jsCommentList");
 const commentNumber = document.getElementById("jsCommentNumber");
+const deleteCommentBtn = document.getElementById("commentDelBtn");
 
 const increaseNumber = () => {
   commentNumber.innerHTML = parseInt(commentNumber.innerHTML, 10) + 1;
@@ -52,10 +53,28 @@ const sendComment = async (comment) => {
       comment,
     },
   });
-  console.log(response);
+  // console.log(response);
   if (response.status === 200) {
     addComment(comment);
   }
+};
+
+const deleteComment = async (event) => {
+  // console.log(event.currentTarget);
+  // console.log(event.currentTarget.parentNode);
+
+  const commentInfo = event.currentTarget.parentNode;
+  const commentText = commentInfo.querySelector(".video__comments-text")
+    .innerHTML;
+  // console.log(commentText);
+
+  const videoId = window.location.href.split("/videos")[1];
+
+  await axios({
+    url: `/api${videoId}/comment/delete`,
+    method: "POST",
+    data: { commentText },
+  });
 };
 
 const handleSubmit = (event) => {
@@ -65,8 +84,10 @@ const handleSubmit = (event) => {
   sendComment(comment);
   commentInput.value = "";
 };
+
 function init() {
   addCommentForm.addEventListener("submit", handleSubmit);
+  deleteCommentBtn.addEventListener("click", deleteComment);
 }
 
 if (addCommentForm) {

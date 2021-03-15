@@ -43,3 +43,5 @@ block content
                             span.video__comments-creator#commentCreator=comment.creator.name
                             span.video__comments-text=comment.text
                             span.video__comments-createdAt#commentCreatedAt=`${comment.createdAt.getFullYear()}.${comment.createdAt.getMonth()+1 < 10 ? "0"+(comment.createdAt.getMonth()+1):comment.createdAt.getMonth()+1}.${comment.createdAt.getDate() < 10 ? "0"+comment.createdAt.getDate():comment.createdAt.getDate()} ${comment.createdAt.getHours() < 10 ? "0"+comment.createdAt.getHours():comment.createdAt.getHours()}:${comment.createdAt.getMinutes() < 10 ? "0"+comment.createdAt.getMinutes():comment.createdAt.getMinutes()}`
+                            if loggedUser && comment.creator.id === loggedUser.id
+                                i.fas.fa-trash#commentDelBtn

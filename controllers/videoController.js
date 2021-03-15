@@ -194,3 +194,36 @@ export const postAddComment = async (req, res) => {
     res.end();
   }
 };
+
+export const deleteComment = async (req, res) => {
+  const {
+    params: { id },
+    body: { commentText },
+    user,
+  } = req;
+
+  // console.log(commentText);
+  try {
+    const video = await Video.findById(id)
+      .populate("creator")
+      .populate({
+        path: "comments",
+        populate: {
+          path: "creator",
+        },
+      });
+
+    const removeComment = await Comment.find({
+      text: commentText,
+      creator: user.id,
+    });
+
+    console.log(removeComment);
+    await Comment.findOneAndRemove({ _id: removeComment._id });
+    video.comments.pop(removeComment._id);
+    video.save();
+    res.status(200);
+  } catch (error) {
+    console.log(error);
+  }
+};
