@@ -136,7 +136,7 @@ export const userDetail = async (req, res) => {
         path: "creator",
       },
     });
-    console.log(user);
+    // console.log(user);
     res.render("userDetail", { pageTitle: "User Detail", user });
   } catch (error) {
     res.redirect(routes.home);
@@ -152,7 +152,7 @@ export const postEditProfile = async (req, res) => {
     file,
   } = req;
   try {
-    console.log(req.user);
+    // console.log(req.user);rabbit video
 
     await User.findByIdAndUpdate(req.user.id, {
       name,

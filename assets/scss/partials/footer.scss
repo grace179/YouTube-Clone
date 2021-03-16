@@ -1,6 +1,6 @@
 .footer {
   margin: 50px 0;
-  padding-top: 50px;
+  padding-top: 30px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   width: 100%;
   display: flex;
@@ -14,8 +14,10 @@
   }
 
   .footer__text {
+    font-family: 'Fredoka One', cursive;
     color: (0, 0, 0, 0.5);
-    font-weight: 800;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
   }
 }

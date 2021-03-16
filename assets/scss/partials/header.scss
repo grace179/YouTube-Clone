@@ -12,9 +12,23 @@
     align-items: center;
 
     .header__column {
-      i {
-        color: white;
-        font-size: 40px;
+      &:nth-child(1) {
+        a {
+          font-family: 'Fredoka One', cursive;
+
+          color: white;
+          font-size: 1.9em;
+          font-weight: 300;
+          letter-spacing: 0.07em;
+          // vertical-align: middle;
+          display: flex;
+          align-items: center;
+
+          i {
+            margin-right: 0.15em;
+            font-size: 40px;
+          }
+        }
       }
 
       &:nth-child(2) {
@@ -41,6 +55,7 @@
         display: none;
         font-size: 2em;
         cursor: pointer;
+        color: #fff;
       }
 
       form {
@@ -67,8 +82,9 @@
 @media screen and (max-width: 48rem) {
   .header {
     .header__wrapper {
+      transition: all 300 ease-in;
+
       .header__column {
-        transition: all 300 ease;
         position: relative;
 
         ul {
@@ -87,6 +103,10 @@
 
         #menu {
           display: none;
+
+          &:hover {
+            display: block;
+          }
         }
 
         #menu.visible {

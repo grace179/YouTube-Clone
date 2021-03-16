@@ -4,6 +4,7 @@
 
   .video__container {
     flex: 1 1 65%;
+    margin-right: 0.8em;
   }
 
   .video__info {
@@ -17,6 +18,13 @@
       margin-bottom: 15px;
     }
 
+    .video__creator-avatar {
+      width: 4em;
+      height: 4em;
+      border-radius: 50%;
+      margin-right: 0.3em;
+    }
+
     .video__title,
     .video__views,
     .video__description {
@@ -24,18 +32,23 @@
     }
 
     .video__title {
-      font-size: 22px;
+      font-size: 1.5em;
       font-weight: 500;
-      margin-left: -0.3em;
-
     }
 
-    .video__views {
-      font-size: 13px;
+    .video__views,
+    .video__createdAt {
+      font-size: 0.85em;
     }
 
     .video__description {
-      font-size: 16px;
+      font-size: 1.1em;
+    }
+
+    .video__info-detail {
+      display: flex;
+      align-items: center;
+      margin-top: 0.8em;
     }
 
     .video__views::after {
@@ -47,6 +60,7 @@
       a {
         color: #2c4bc4;
         font-weight: 600;
+        font-size: 1.2em;
       }
 
       margin-top: 0.7em;
@@ -78,7 +92,11 @@
     .video__comments-list {
       margin-top: 2em;
       text-align: left;
-      padding-left: 1.5em;
+      padding: 2em 1.5em;
+      height: 70vh;
+      overflow-y: scroll;
+      background-color: #fff;
+
 
       li {
         display: flex;
@@ -96,6 +114,7 @@
         .comment-info {
           display: flex;
           flex-direction: column;
+          margin-right: 0.4em;
 
           .video__comments-creator {
             font-weight: 500;
@@ -114,6 +133,36 @@
           .video__comments-createdAt {
             font-size: 0.7em;
           }
+
+        }
+
+        .video__comments-del {
+          align-self: center;
+          position: relative;
+
+          button {
+            padding: 0;
+            background-color: transparent;
+            border: none;
+            border-radius: none;
+            box-shadow: none;
+            color: $dark-red;
+            font-size: 1.5em;
+
+            &:hover+.comment-del-info {
+              display: block;
+            }
+
+          }
+
+          .comment-del-info {
+            display: none;
+            position: absolute;
+            top: -1.2em;
+            left: -0.6em;
+            font-size: 0.9em;
+            font-weight: 600;
+          }
         }
 
         &:not(:last-child) {
@@ -128,6 +177,10 @@
   .video-detail__container {
     flex-direction: column;
     align-items: center;
+
+    .video__container {
+      margin-right: 0;
+    }
 
     .video__comments {
       width: 100%;

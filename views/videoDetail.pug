@@ -19,9 +19,12 @@ block content
                 else
                     span.video__views #{video.views} views
                 span.video__createdAt=`${video.createdAt.getFullYear()}.${video.createdAt.getMonth()+1 < 10 ? "0"+(video.createdAt.getMonth()+1):video.createdAt.getMonth()+1}.${video.createdAt.getDate() < 10 ? "0"+video.createdAt.getDate():video.createdAt.getDate()} ${video.createdAt.getHours() < 10 ? "0"+video.createdAt.getHours():video.createdAt.getHours()}:${video.createdAt.getMinutes() < 10 ? "0"+video.createdAt.getMinutes():video.createdAt.getMinutes()}`
-                .video__author
-                    |Uploaded by 
-                    a(href=routes.userDetail(video.creator.id))=video.creator.name
+                .video__info-detail
+                    a(href=routes.userDetail(video.creator.id))
+                        img.video__creator-avatar(src=`/${video.creator.avatarUrl}`)
+                    .video__author
+                        |Uploaded by 
+                        a(href=routes.userDetail(video.creator.id))=video.creator.name
         .video__comments
             if video.comments.length === 1
                 span.video__comment-number
@@ -38,10 +41,14 @@ block content
                 each comment in video.comments.reverse()
                     li
                         .comment-profile
-                            img.video__comments-avatar(src=`/${comment.creator.avatarUrl}`)
+                            a(href=routes.userDetail(comment.creator.id))
+                                img.video__comments-avatar(src=`/${comment.creator.avatarUrl}`)
                         .comment-info
                             span.video__comments-creator#commentCreator=comment.creator.name
                             span.video__comments-text=comment.text
                             span.video__comments-createdAt#commentCreatedAt=`${comment.createdAt.getFullYear()}.${comment.createdAt.getMonth()+1 < 10 ? "0"+(comment.createdAt.getMonth()+1):comment.createdAt.getMonth()+1}.${comment.createdAt.getDate() < 10 ? "0"+comment.createdAt.getDate():comment.createdAt.getDate()} ${comment.createdAt.getHours() < 10 ? "0"+comment.createdAt.getHours():comment.createdAt.getHours()}:${comment.createdAt.getMinutes() < 10 ? "0"+comment.createdAt.getMinutes():comment.createdAt.getMinutes()}`
-                            if loggedUser && comment.creator.id === loggedUser.id
-                                i.fas.fa-trash#commentDelBtn
+                        if loggedUser && comment.creator.id === loggedUser.id
+                            form.video__comments-del#commentDelBtn
+                                button(type="submit" value="Delete" name=comment.id)
+                                    i.fas.fa-times
+                                p.comment-del-info Delete

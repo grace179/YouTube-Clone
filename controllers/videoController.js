@@ -35,11 +35,11 @@ export const search = async (req, res) => {
         $regex: searchingBy,
         $options: "i",
       },
-    });
+    }).populate("creator");
   } catch (error) {
     console.log(error);
   }
-  console.log(req.query.term);
+  // console.log(req.query.term);
   res.render("search", {
     pageTitle: "Search",
     searchingBy,
@@ -195,14 +195,14 @@ export const postAddComment = async (req, res) => {
   }
 };
 
-export const deleteComment = async (req, res) => {
+export const postDeleteComment = async (req, res) => {
   const {
     params: { id },
-    body: { commentText },
+    body: { commentId },
     user,
   } = req;
 
-  // console.log(commentText);
+  // console.log(commentId);
   try {
     const video = await Video.findById(id)
       .populate("creator")
@@ -213,17 +213,17 @@ export const deleteComment = async (req, res) => {
         },
       });
 
-    const removeComment = await Comment.find({
-      text: commentText,
-      creator: user.id,
-    });
+    const removeComment = await Comment.find({ _id: commentId });
 
     console.log(removeComment);
-    await Comment.findOneAndRemove({ _id: removeComment._id });
-    video.comments.pop(removeComment._id);
+    await Comment.findByIdAndRemove({ _id: commentId });
+    video.comments.pull(commentId);
     video.save();
     res.status(200);
   } catch (error) {
     console.log(error);
+    res.status(400);
+  } finally {
+    res.end();
   }
 };

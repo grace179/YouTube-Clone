@@ -14,3 +14,10 @@
     grid-column: span 2;
   }
 }
+
+@media screen and (max-width: 48rem) {
+  .home-videos {
+    display: flex;
+    flex-direction: column;
+  }
+}
