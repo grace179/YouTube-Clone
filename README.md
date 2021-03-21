@@ -2,6 +2,10 @@
 
 Clonde Coding with VanilaJs and NodeJs
 
+[데모링크](https://afternoon-sierra-24974.herokuapp.com)
+   
+배포 : heroku
+
 ## pages:
 - Home
   - video 목록들과 정보 보여줌
