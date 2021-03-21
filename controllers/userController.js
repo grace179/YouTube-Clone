@@ -27,7 +27,6 @@ export const postJoin = async (req, res, next) => {
       res.redirect(routes.home);
     }
 
-    // To Do: Log user in
   }
 };
 
@@ -157,7 +156,7 @@ export const postEditProfile = async (req, res) => {
     await User.findByIdAndUpdate(req.user.id, {
       name,
       email,
-      avatarUrl: file ? file.path : req.user.avatarUrl,
+      avatarUrl: file ? file.location : req.user.avatarUrl,
     });
 
     res.redirect(routes.me);

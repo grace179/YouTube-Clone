@@ -1,13 +1,14 @@
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
+
 dotenv.config();
 
 mongoose.connect(
-    process.env.MONGO_URL,
+    process.env.MONGO_URL_RPOD,
     {
         useNewUrlParser: true,
+        useUnifiedTopology: true,
         useFindAndModify: false,
-        useUnifiedTopology: true 
     }
 );
 

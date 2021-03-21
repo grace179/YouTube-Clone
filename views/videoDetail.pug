@@ -21,7 +21,7 @@ block content
                 span.video__createdAt=`${video.createdAt.getFullYear()}.${video.createdAt.getMonth()+1 < 10 ? "0"+(video.createdAt.getMonth()+1):video.createdAt.getMonth()+1}.${video.createdAt.getDate() < 10 ? "0"+video.createdAt.getDate():video.createdAt.getDate()} ${video.createdAt.getHours() < 10 ? "0"+video.createdAt.getHours():video.createdAt.getHours()}:${video.createdAt.getMinutes() < 10 ? "0"+video.createdAt.getMinutes():video.createdAt.getMinutes()}`
                 .video__info-detail
                     a(href=routes.userDetail(video.creator.id))
-                        img.video__creator-avatar(src=`/${video.creator.avatarUrl}`)
+                        img.video__creator-avatar(src=video.creator.avatarUrl)
                     .video__author
                         |Uploaded by 
                         a(href=routes.userDetail(video.creator.id))=video.creator.name
@@ -42,7 +42,7 @@ block content
                     li
                         .comment-profile
                             a(href=routes.userDetail(comment.creator.id))
-                                img.video__comments-avatar(src=`/${comment.creator.avatarUrl}`)
+                                img.video__comments-avatar(src=comment.creator.avatarUrl)
                         .comment-info
                             span.video__comments-creator#commentCreator=comment.creator.name
                             span.video__comments-text=comment.text

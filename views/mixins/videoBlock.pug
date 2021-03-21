@@ -4,7 +4,7 @@ mixin videoBlock(video = {})
             video.videoBlock__thumnail(src=video.videoFile, controls=false)
             .videoBlock__info
                 .videoBlock__avatar
-                    img(src=`/${video.creator.avatarUrl}`)
+                    img(src=video.creator.avatarUrl)
                 .videoBlock__description
                     h4.videoBlock__title=video.title
                     span.videoBlock__creator=video.creator.name
