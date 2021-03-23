@@ -18,7 +18,7 @@ Clonde Coding with VanilaJs and NodeJs
 - Search
   - 상단(header)에 있는 검색창에 키워드를 입력한 후 검색하면 키워드에 맞는 비디오 목록을 보여줌
 - User Detail
-  - user의 정보를 보여주는 페이지( 닉네임, 비디오 목록 )
+  - user의 정보를 보여주는 페이지( 프포필사진, 닉네임, 비디오 목록 )
 - Edit Profile
   - 닉네임, 프로필 이미지 사진 변경가능 
 - Change Password
@@ -26,6 +26,7 @@ Clonde Coding with VanilaJs and NodeJs
 - Upload
   - 비디오 파일 업로드
   - 카메라를 이용해서 녹화 가능
+  - 녹화한 파일을 업로드 할 수 있음
 - Video Detail
   - 비디오 정보를 보여줌 ( 제목, 상세설명, 조회수, 생성일) 
   - 생성자 정보 ( 닉네임 클릭시 user detail( 사용자 정보 페이지 ) 로 이동)
